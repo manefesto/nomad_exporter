@@ -72,7 +72,7 @@ nomad_deployments 1.0
 # TYPE nomad_jobs gauge
 nomad_jobs{state="pending"} 1.0
 nomad_jobs{state="running"} 2.0
-nomad_jobs{state="dead"} 1.0
+nomad_jobs{state="dead"} 0.0
 # HELP nomad_job Job status(-1 dead, 0 pending, 1 running)
 # TYPE nomad_job gauge
 nomad_job{name="traefik"} 1.0
