@@ -14,7 +14,9 @@ docker build -t nomad_exporter:0.0.1 -f docker/Dockerfile .
 Used variables:
 
 NOMAD_EXPORTER_IP - exporter bind ip(default 127.0.0.1)
+
 NOMAD_EXPORTER_PORT - exporter bind port(default 9001)
+
 NOMAD_ADDR - nomad address (default http://127.0.0.1:4646)
 
 Run container:
