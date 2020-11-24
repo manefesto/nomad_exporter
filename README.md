@@ -20,7 +20,6 @@ NOMAD_ADDR - nomad address (default http://127.0.0.1:4646)
 Run container:
 
 ```
-
 docker run -e NOMAD_EXPORTER_IP=0.0.0.0 -e NOMAD_EXPORTER_PORT=9001 -e NOMAD_ADDR=http://192.168.0.1:4646 --rm -d nomad_exporter:0.0.1
 
 ```
