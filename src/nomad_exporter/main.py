@@ -2,28 +2,22 @@ from prometheus_client import start_http_server, Summary, Counter, Gauge
 import nomad
 import time
 from os import environ
-
 listen_ip = "127.0.0.1" if environ.get("NOMAD_EXPORTER_IP") is None else environ.get("NOMAD_EXPORTER_IP")
 listen_port = 9001 if environ.get("NOMAD_EXPORTER_PORT") is None else environ.get("NOMAD_EXPORTER_PORT")
 nomad_addr="127.0.0.1" if environ.get("NOMAD_ADDR") is None else environ.get("NOMAD_ADDR")
-
 nomad_server = nomad.Nomad(host="nomad_addr")
 const_job_status = ["pending", "running", "dead"]
 const_node_status = ["dead", "initializing", "ready"]
-
 def deployments_count():
   return len(nomad_server.deployments.get_deployments())
-
 def jobs_count(job_status):
   status=[]
   for job in nomad_server.jobs.get_jobs():
     if job["Status"] == job_status:
       status.append(job["Name"])
   return len(status)
-
 def nodes_count():
   return len(nomad_server.nodes.get_nodes())
-
 if __name__ == '__main__':
   nomad_deployments = Gauge('nomad_deployments', 'Count of deployments')
   nomad_jobs = Gauge("nomad_jobs","Current count of jobs",["state"])
